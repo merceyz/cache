@@ -17,8 +17,8 @@
   - [Windows](#windows-2)
   - [Using multiple systems and `npm config`](#using-multiple-systems-and-npm-config)
 - [Node - Lerna](#node---lerna)
+- [Node - Yarn Classic](#node---yarn-classic)
 - [Node - Yarn](#node---yarn)
-- [Node - Yarn 2](#node---yarn-2)
 - [OCaml/Reason - esy](#ocamlreason---esy)
 - [PHP - Composer](#php---composer)
 - [Python - pip](#python---pip)
@@ -260,8 +260,8 @@ If using `npm config` to retrieve the cache directory, ensure you run [actions/s
     key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
 ```
 
-## Node - Yarn
-The yarn cache directory will depend on your operating system and version of `yarn`. See https://yarnpkg.com/lang/en/docs/cli/cache/ for more info.
+## Node - Yarn Classic
+The Yarn 1.x cache directory will depend on your operating system and version of `yarn`. See https://classic.yarnpkg.com/en/docs/cli/cache/ for more info.
 
 ```yaml
 - name: Get yarn cache directory path
@@ -277,9 +277,9 @@ The yarn cache directory will depend on your operating system and version of `ya
       ${{ runner.os }}-yarn-
 ```
 
-## Node - Yarn 2
+## Node - Yarn
 
-The yarn 2 cache directory will depend on your config. See https://yarnpkg.com/configuration/yarnrc#cacheFolder for more info.
+The Yarn cache directory will depend on your config. See https://yarnpkg.com/configuration/yarnrc#cacheFolder for more info.
 
 ```yaml
 - name: Get yarn cache directory path
@@ -290,9 +290,9 @@ The yarn 2 cache directory will depend on your config. See https://yarnpkg.com/c
   id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
   with:
     path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-    key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+    key: yarn-${{ hashFiles('**/yarn.lock') }}
     restore-keys: |
-      ${{ runner.os }}-yarn-
+      yarn-
 ```
 
 ## OCaml/Reason - esy
